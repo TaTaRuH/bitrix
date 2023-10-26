@@ -49,9 +49,9 @@ $arComponentParameters = array(
         // выбор самого инфоблока
         'IBLOCK_ID' => array(
             'PARENT' => 'BASE',
-            'NAME' => 'Выберите родительский инфоблок',
+            'NAME' => GetMessage('T_IBLOCK_DESC_IBID'),
             'TYPE' => 'LIST',
-            'VALUES' =>GetMessage('T_IBLOCK_DESC_IBID'),
+            'VALUES' =>$arInfoBlocks,
             'REFRESH' => 'Y',
             "DEFAULT" => '',
             "ADDITIONAL_VALUES" => "Y",
