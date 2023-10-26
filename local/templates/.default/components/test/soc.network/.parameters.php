@@ -37,21 +37,21 @@ $arComponentParameters = array(
     // основной массив с параметрами
     'PARAMETERS' => array(
         // выбор типа инфоблока
-        'IBLOCK_TYPE' => array(                  // ключ массива $arParams в component.php
-            'PARENT' => 'BASE',                  // название группы
-            'NAME' => 'Выберите тип инфоблока',  // название параметра
-            'TYPE' => 'LIST',                    // тип элемента управления, в котором будет устанавливаться параметр
-            'VALUES' => $arIBlockType,           // входные значения
-            'REFRESH' => 'Y',                    // перегружать настройки или нет после выбора (N/Y)
-            'DEFAULT' => 'news',                 // значение по умолчанию
-            'MULTIPLE' => 'N',                   // одиночное/множественное значение (N/Y)
+        'IBLOCK_TYPE' => array(                            // ключ массива $arParams в component.php
+            'PARENT' => 'BASE',                            // название группы
+            'NAME' => GetMessage("T_IBLOCK_DESC_IBTYPE"),  // название параметра
+            'TYPE' => 'LIST',                              // тип элемента управления, в котором будет устанавливаться параметр
+            'VALUES' => $arIBlockType,                     // входные значения
+            'REFRESH' => 'Y',                              // перегружать настройки или нет после выбора (N/Y)
+            'DEFAULT' => 'news',                           // значение по умолчанию
+            'MULTIPLE' => 'N',                             // одиночное/множественное значение (N/Y)
         ),
         // выбор самого инфоблока
         'IBLOCK_ID' => array(
             'PARENT' => 'BASE',
             'NAME' => 'Выберите родительский инфоблок',
             'TYPE' => 'LIST',
-            'VALUES' => $arInfoBlocks,
+            'VALUES' =>GetMessage('T_IBLOCK_DESC_IBID'),
             'REFRESH' => 'Y',
             "DEFAULT" => '',
             "ADDITIONAL_VALUES" => "Y",
@@ -59,18 +59,18 @@ $arComponentParameters = array(
         ),
         "IBLOCK_SORT_BY" => [
             "PARENT" => "BASE",
-            "NAME" => "Поле для сортировки:",
+            "NAME" => GetMessage('T_IBLOCK_DESC_IBSORT'),
             "TYPE" => "LIST",
             "VALUES" => [
-                "SORT" => "Сортировка",
-                "NAME" => "Название",
-                "ID" => "Идентификатор",
+                "SORT" => GetMessage('T_IBLOCK_DESC_FSORT'),
+                "NAME" => GetMessage('T_IBLOCK_DESC_FNAME'),
+                "ID" => GetMessage('T_IBLOCK_DESC_ID'),
             ],
             "DEFAULT" => "SORT",
         ],
         "IBLOCK_SORT_ORDER" => [
             "PARENT" => "BASE",
-            "NAME" => "Направление для сортировки",
+            "NAME" => GetMessage('T_IBLOCK_DESC_IBSORTBY'),
             "TYPE" => "LIST",
             "DEFAULT" => "ASC",
             "VALUES" => $arSorts,
