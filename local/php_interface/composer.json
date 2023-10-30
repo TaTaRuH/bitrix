@@ -1,0 +1,17 @@
+{
+    "name": "test/helpers",
+    "require": {
+        "kint-php/kint": "^4.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Test\\Helpers\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TaTaRuH",
+            "email": "dinirik2000@mail.ru"
+        }
+    ]
+}

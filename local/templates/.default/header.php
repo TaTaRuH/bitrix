@@ -10,7 +10,7 @@ IncludeTemplateLangFile(__FILE__);
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" bgcolor="#FFFFFF">
 
 <?$APPLICATION->ShowPanel()?>
-
+    
 <?if($USER->IsAdmin()):?>
 
 <div style="border:red solid 1px">

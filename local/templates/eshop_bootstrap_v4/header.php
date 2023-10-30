@@ -28,7 +28,6 @@ $curPage = $APPLICATION->GetCurPage(true);
 	"",
 	array()
 );?>
-<?dd('TEST');?>
 <div class="bx-wrapper" id="bx_eshop_wrap">
 	<header class="bx-header">
 		<div class="bx-header-section container">
