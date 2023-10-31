@@ -1,13 +1,13 @@
 <?php
-use Test\Helpers\NetworksTable;
+use Test\Table\NetworkTable;
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 <?//echo "<pre>"; print_r($arParams); echo "</pre>";?>
 <?//echo "<pre>"; print_r($arResult); echo "</pre>";?>
 <?php
-$tableName = NetworksTable::getTableName();
-print_r(NetworksTable::getEntity()->compileDbTableStructureDump());
-echo $tableName;
-?>
+//$tableName = NetworkTable::getTableName();
+//print_r(NetworkTable::getEntity()->compileDbTableStructureDump());
+//echo $tableName;
+//?>
 
 
 
@@ -67,7 +67,6 @@ echo $tableName;
                         <div class="item">
                                 <div class="col-1 title"><?= $arElement["NAME"] ?></div>
                                 <div class="col-4 image"><img src="<?= $arElement["KARTINKA_VALUE"]["SRC"] ?>" alt="<?= $arElement["KARTINKA_VALUE"]["DESCRIPTION"] ?>" width="40" height="40"></div>
-                                <div class="col-12 tekst"><a href="<?= $arElement["URL_VALUE"] ?>"><?= $arElement["URL_VALUE"] ?></a></div>
 <!--                                <div class="col-12 button">Узнать больше<span class="icon-arrow-right"></div>-->
                             </div>
                     </div>

@@ -53,7 +53,7 @@ class CIblocList extends CBitrixComponent
         if ($this->startResultCache()) {
             // Запрос к инфоблоку через класс ORM
             $res = \Bitrix\Iblock\Elements\ElementCatalogTable::getList([
-                    'select' => ["ID", "NAME", "IBLOCK_ID","URL_"=>"URL","PHOTO_"=>"PHOTO"],
+                    'select' => ["ID", "NAME", "IBLOCK_ID","PHOTO_"=>"PHOTO"],
                 "filter" => ["ACTIVE" => "Y"],  
                 "order" => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
             ]);

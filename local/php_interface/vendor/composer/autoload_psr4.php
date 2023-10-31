@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Test\\Helpers\\' => array($baseDir . '/src'),
+    'Test\\Table\\' => array($baseDir . '/src/Table'),
+    'Test\\Handler\\' => array($baseDir . '/src/Handler'),
     'Kint\\' => array($vendorDir . '/kint-php/kint/src'),
 );

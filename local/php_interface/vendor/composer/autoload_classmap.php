@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'Kint\\CallFinder' => $vendorDir . '/kint-php/kint/src/CallFinder.php',
     'Kint\\Kint' => $vendorDir . '/kint-php/kint/src/Kint.php',
     'Kint\\Parser\\ArrayLimitPlugin' => $vendorDir . '/kint-php/kint/src/Parser/ArrayLimitPlugin.php',
@@ -93,4 +92,6 @@ return array(
     'Kint\\Zval\\TraceFrameValue' => $vendorDir . '/kint-php/kint/src/Zval/TraceFrameValue.php',
     'Kint\\Zval\\TraceValue' => $vendorDir . '/kint-php/kint/src/Zval/TraceValue.php',
     'Kint\\Zval\\Value' => $vendorDir . '/kint-php/kint/src/Zval/Value.php',
+    'Test\\Handler\\NetworkHelper' => $baseDir . '/src/Handler/NetworkHelper.php',
+    'Test\\Table\\NetworkTable' => $baseDir . '/src/Table/NetworkTable.php',
 );

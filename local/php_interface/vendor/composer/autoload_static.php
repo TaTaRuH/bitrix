@@ -13,7 +13,8 @@ class ComposerStaticIniteafc00ef04d8e60c8e1778370fbaae65
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
-            'Test\\Helpers\\' => 13,
+            'Test\\Table\\' => 11,
+            'Test\\Handler\\' => 13,
         ),
         'K' => 
         array (
@@ -22,9 +23,13 @@ class ComposerStaticIniteafc00ef04d8e60c8e1778370fbaae65
     );
 
     public static $prefixDirsPsr4 = array (
-        'Test\\Helpers\\' => 
+        'Test\\Table\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/src',
+            0 => __DIR__ . '/../..' . '/src/Table',
+        ),
+        'Test\\Handler\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Handler',
         ),
         'Kint\\' => 
         array (
@@ -33,7 +38,6 @@ class ComposerStaticIniteafc00ef04d8e60c8e1778370fbaae65
     );
 
     public static $classMap = array (
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Kint\\CallFinder' => __DIR__ . '/..' . '/kint-php/kint/src/CallFinder.php',
         'Kint\\Kint' => __DIR__ . '/..' . '/kint-php/kint/src/Kint.php',
         'Kint\\Parser\\ArrayLimitPlugin' => __DIR__ . '/..' . '/kint-php/kint/src/Parser/ArrayLimitPlugin.php',
@@ -120,6 +124,8 @@ class ComposerStaticIniteafc00ef04d8e60c8e1778370fbaae65
         'Kint\\Zval\\TraceFrameValue' => __DIR__ . '/..' . '/kint-php/kint/src/Zval/TraceFrameValue.php',
         'Kint\\Zval\\TraceValue' => __DIR__ . '/..' . '/kint-php/kint/src/Zval/TraceValue.php',
         'Kint\\Zval\\Value' => __DIR__ . '/..' . '/kint-php/kint/src/Zval/Value.php',
+        'Test\\Handler\\NetworkHelper' => __DIR__ . '/../..' . '/src/Handler/NetworkHelper.php',
+        'Test\\Table\\NetworkTable' => __DIR__ . '/../..' . '/src/Table/NetworkTable.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
