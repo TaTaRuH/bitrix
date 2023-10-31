@@ -3,8 +3,6 @@
 namespace Test\Table;
 
 use Bitrix\Main\Entity;
-// ID = 4
-// ID элемента инстаграмма 317
 
 class NetworkTable extends Entity\DataManager
 {
