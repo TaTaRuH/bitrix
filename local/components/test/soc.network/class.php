@@ -55,9 +55,9 @@ class CIblocList extends CBitrixComponent
         if ($this->startResultCache()) {
             // Запрос к инфоблоку через класс ORM
             $res = \Bitrix\Iblock\Elements\ElementCatalogTable::getList([
-                'select' => ["ID", "NAME", "IBLOCK_ID","PHOTO_"=>"PHOTO"],
-                "filter" => ["ACTIVE" => "Y"],
-                "order"  => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
+                'select' => ['ID', 'NAME', 'IBLOCK_ID','PHOTO_'=>'PHOTO'],
+                'filter' => ['ACTIVE' => 'Y'],
+                'order'  => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
             ]);
             // Формируем массив arResult
             while ($arItem = $res->fetch()) {
@@ -67,7 +67,7 @@ class CIblocList extends CBitrixComponent
                 ])->fetch();
                 $arItem['COLOR'] = $result['COLOR'];
                 $arItem['LINK']  = $result['LINK'];
-                $arItem["KARTINKA_VALUE"] = CFile::GetFileArray($arItem["PHOTO_VALUE"]);
+                $arItem['KARTINKA_VALUE'] = CFile::GetFileArray($arItem['PHOTO_VALUE']);
                 $this->arResult[] = $arItem;
             }
             // кэш не затронет весь код ниже, он будут выполняться на каждом хите, здесь работаем с другим $arResult, будут доступны только те ключи массива, которые перечислены в вызове SetResultCacheKeys()
