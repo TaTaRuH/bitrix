@@ -10,51 +10,47 @@ class NetworkHelper
 
     public static function OnBeforeIBlockElementUpdate($arFields)
     {
-        print_r('UPDATE');
-        d($arFields);
-        if ($arFields['NAME'] === 'VK')
-        {
-        }
+        $array = ['VK' => 'Белый','INST'=>'Черный','TG'=>'Серый'];
+
         $result = NetworkTable::getList([
             'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
             'filter' => ['=ELEMENT_ID' => $arFields['ID']]
-        ])->fetchAll();
-        if (!isset($result[0]['ID']))
+        ])->fetch();
+
+        $id = $result['ID'];
+
+        if (isset($id))
         {
-            $res = NetworkTable::add([
-                'ELEMENT_ID' => $arFields['ID'],
-                'LINK' => 'https://vk.com',
-                'COLOR' => 'Голубой'
-            ]);
-        }
-        else
-        {
-            $id = $result[0]['ID'];
             $res = NetworkTable::update($id,[
-               'COLOR' => 'Красный'
+                'COLOR' => $array[$arFields['NAME']]
             ]);
         }
     }
 
     public static function OnAfterIBlockElementAdd($arFields)
     {
-        print_r('ADD');
         d($arFields);
-//        if ($arFields['NAME'] === 'VK') {
-//            $result = NetworkTable::add([
-//                'ELEMENT_ID' => $arFields['ID'],
-//                'LINK' => 'https://vk.com',
-//                'COLOR' => 'Голубой'
-//            ]);
-//        }
-//        if ($result->isSuccess()) {
-//            print_r($result->getId());
-//        }
-        $result = NetworkTable::add([
-            'ELEMENT_ID' => $arFields['ID'],
-            'LINK' => 'https://vk.com',
-            'COLOR' => 'Голубой'
-        ]);
-        print_r($result);
+        $array = [
+            'VK'=>
+                [
+                    'ELEMENT_ID' => $arFields['ID'],
+                    'LINK' => 'https://vk.com/',
+                    'COLOR' => 'Синий'
+                ],
+            'INST'=>
+                [
+                    'ELEMENT_ID' => $arFields['ID'],
+                    'LINK' => 'https://instagram.com/',
+                    'COLOR' => 'Желтый'
+                ],
+            'TG'=>
+                [
+                    'ELEMENT_ID' => $arFields['ID'],
+                    'LINK' => 'https://web.telegram.org/',
+                    'COLOR' => 'Голубой'
+                ]
+        ];
+        $result = NetworkTable::add($array[$arFields['NAME']]);
+
     }
 }

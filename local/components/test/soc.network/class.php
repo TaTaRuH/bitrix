@@ -6,6 +6,8 @@ use Bitrix\Main\Localization\Loc;
 use Bitrix\Main\SystemException;
 // класс для загрузки необходимых файлов, классов, модулей
 use Bitrix\Main\Loader;
+
+use Test\Table\NetworkTable;
 // основной класс, является оболочкой компонента унаследованного от CBitrixComponent
 class CIblocList extends CBitrixComponent
 {
@@ -53,16 +55,21 @@ class CIblocList extends CBitrixComponent
         if ($this->startResultCache()) {
             // Запрос к инфоблоку через класс ORM
             $res = \Bitrix\Iblock\Elements\ElementCatalogTable::getList([
-                    'select' => ["ID", "NAME", "IBLOCK_ID","PHOTO_"=>"PHOTO"],
+                'select' => ["ID", "NAME", "IBLOCK_ID","PHOTO_"=>"PHOTO"],
                 "filter" => ["ACTIVE" => "Y"],
-                "order" => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
+                "order"  => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
             ]);
             // Формируем массив arResult
             while ($arItem = $res->fetch()) {
+                $result = NetworkTable::getList([
+                    'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
+                    'filter' => ['=ELEMENT_ID' => $arItem['ID']]
+                ])->fetch();
+                $arItem['COLOR'] = $result['COLOR'];
+                $arItem['LINK']  = $result['LINK'];
                 $arItem["KARTINKA_VALUE"] = CFile::GetFileArray($arItem["PHOTO_VALUE"]);
                 $this->arResult[] = $arItem;
             }
-//            file_put_contents('/home/d/diniriq7/diniriq7.beget.tech/public_html/bitrix/components/test/soc.network/TEST.txt',json_encode($this->arResult,JSON_UNESCAPED_UNICODE));
             // кэш не затронет весь код ниже, он будут выполняться на каждом хите, здесь работаем с другим $arResult, будут доступны только те ключи массива, которые перечислены в вызове SetResultCacheKeys()
             if (isset($this->arResult)) {
                 // ключи $arResult перечисленные при вызове этого метода, будут доступны в component_epilog.php и ниже по коду, обратите внимание там будет другой $arResult

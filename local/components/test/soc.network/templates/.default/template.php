@@ -1,17 +1,5 @@
 <?php
-use Test\Table\NetworkTable;
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
-<?//echo "<pre>"; print_r($arParams); echo "</pre>";?>
-<?//echo "<pre>"; print_r($arResult); echo "</pre>";?>
-<?php
-$result = NetworkTable::getList([
-    'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
-    'filter' => ['=ELEMENT_ID' => 333]
-])->fetchAll();
-print_r($result);
-?>
-
-
 
 <section>
     <div class="container product_slider">
@@ -67,10 +55,12 @@ print_r($result);
                     } ?>
                     <div class="product">
                         <div class="item">
-                                <div class="col-1 title"><?= $arElement["NAME"] ?></div>
-                                <div class="col-4 image"><img src="<?= $arElement["KARTINKA_VALUE"]["SRC"] ?>" alt="<?= $arElement["KARTINKA_VALUE"]["DESCRIPTION"] ?>" width="40" height="40"></div>
-<!--                                <div class="col-12 button">Узнать больше<span class="icon-arrow-right"></div>-->
-                            </div>
+                            <div class="col-1 title"><?= $arElement["COLOR"] ?></div>
+                            <div class="col-4 image"><img src="<?= $arElement["KARTINKA_VALUE"]["SRC"] ?>" alt="<?= $arElement["KARTINKA_VALUE"]["DESCRIPTION"] ?>" width="40" height="40"></div>
+                            <div class="col-12 button"><a href="<?= $arElement["LINK"] ?>">Перейти на сайт<span class="icon-arrow-right"></span></a></div>
+                        </div>
+                        <br>
+                        </br>
                     </div>
                 <? endforeach ?>
             </div>
