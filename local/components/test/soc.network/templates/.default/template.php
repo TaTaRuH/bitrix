@@ -4,10 +4,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 <?//echo "<pre>"; print_r($arParams); echo "</pre>";?>
 <?//echo "<pre>"; print_r($arResult); echo "</pre>";?>
 <?php
-//$tableName = NetworkTable::getTableName();
-//print_r(NetworkTable::getEntity()->compileDbTableStructureDump());
-//echo $tableName;
-//?>
+$result = NetworkTable::getList([
+    'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
+    'filter' => ['=ELEMENT_ID' => 333]
+])->fetchAll();
+print_r($result);
+?>
 
 
 

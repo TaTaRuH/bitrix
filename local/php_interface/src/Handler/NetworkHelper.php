@@ -14,40 +14,47 @@ class NetworkHelper
         d($arFields);
         if ($arFields['NAME'] === 'VK')
         {
-            $result = NetworkTable::add([
+        }
+        $result = NetworkTable::getList([
+            'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
+            'filter' => ['=ELEMENT_ID' => $arFields['ID']]
+        ])->fetchAll();
+        if (!isset($result[0]['ID']))
+        {
+            $res = NetworkTable::add([
                 'ELEMENT_ID' => $arFields['ID'],
                 'LINK' => 'https://vk.com',
                 'COLOR' => 'Голубой'
             ]);
-//            $result = NetworkTable::getList([
-//                'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
-//                'filter' => ['=ID' => 3]
-//            ]);
         }
-//        while( $ob = $result->fetch())
-//        {
-//            echo '<pre>'.print_r($ob,true).'</pre>';
-//        }
-        if ($result->isSuccess()) {
-            print_r($result->getId());
+        else
+        {
+            $id = $result[0]['ID'];
+            $res = NetworkTable::update($id,[
+               'COLOR' => 'Красный'
+            ]);
         }
-        die;
     }
 
     public static function OnAfterIBlockElementAdd($arFields)
     {
         print_r('ADD');
         d($arFields);
-        if ($arFields['NAME'] === 'VK') {
-            $result = NetworkTable::add([
-                'ELEMENT_ID' => $arFields['ID'],
-                'LINK' => 'https://vk.com',
-                'COLOR' => 'Голубой'
-            ]);
-        }
-        if ($result->isSuccess()) {
-            print_r($result->getId());
-        }
-        die;
+//        if ($arFields['NAME'] === 'VK') {
+//            $result = NetworkTable::add([
+//                'ELEMENT_ID' => $arFields['ID'],
+//                'LINK' => 'https://vk.com',
+//                'COLOR' => 'Голубой'
+//            ]);
+//        }
+//        if ($result->isSuccess()) {
+//            print_r($result->getId());
+//        }
+        $result = NetworkTable::add([
+            'ELEMENT_ID' => $arFields['ID'],
+            'LINK' => 'https://vk.com',
+            'COLOR' => 'Голубой'
+        ]);
+        print_r($result);
     }
 }

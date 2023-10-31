@@ -30,12 +30,5 @@
 //    \Bitrix\Sale\DiscountCouponsManager::clear(true);
 //}
 //\Bitrix\Main\EventManager::getInstance()->addEventHandler('main', 'OnAfter', 'OnSaleOrderSavedHandler');
-\Bitrix\Main\EventManager::getInstance()->addEventHandler('sale', 'OnBeforeBasketUpdate', array('RestTest','UpdateTest'));
-class RestTest
-{
-    public static function UpdateTest($event)
-    {
-        echo "TEST";
-    }
-}
+
 ?>

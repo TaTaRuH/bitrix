@@ -54,7 +54,7 @@ class CIblocList extends CBitrixComponent
             // Запрос к инфоблоку через класс ORM
             $res = \Bitrix\Iblock\Elements\ElementCatalogTable::getList([
                     'select' => ["ID", "NAME", "IBLOCK_ID","PHOTO_"=>"PHOTO"],
-                "filter" => ["ACTIVE" => "Y"],  
+                "filter" => ["ACTIVE" => "Y"],
                 "order" => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
             ]);
             // Формируем массив arResult
@@ -74,7 +74,7 @@ class CIblocList extends CBitrixComponent
             } else { // если выяснилось что кешировать данные не требуется, прерываем кеширование и выдаем сообщение «Страница не найдена»
                 $this->AbortResultCache();
                 \Bitrix\Iblock\Component\Tools::process404(
-                    Loc::getMessage('PAGE_NOT_FOUND'), 
+                    Loc::getMessage('PAGE_NOT_FOUND'),
                     true,
                     true
                 );
