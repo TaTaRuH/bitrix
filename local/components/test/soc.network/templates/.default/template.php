@@ -1,5 +1,4 @@
-<?php
-if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
+<?php if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
 
 <section>
     <div class="container product_slider">
@@ -55,9 +54,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die(); ?>
                     } ?>
                     <div class="product">
                         <div class="item">
-                            <div class="col-1 title"><?= $arElement["COLOR"] ?></div>
+                            <div class="col-1 title"><?= $arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_network_COLOR"] ?></div>
                             <div class="col-4 image"><img src="<?= $arElement["KARTINKA_VALUE"]["SRC"] ?>" alt="<?= $arElement["KARTINKA_VALUE"]["DESCRIPTION"] ?>" width="40" height="40"></div>
-                            <div class="col-12 button"><a href="<?= $arElement["LINK"] ?>">Перейти на сайт<span class="icon-arrow-right"></span></a></div>
+                            <div class="col-12 button"><a href="<?= $arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_network_LINK"] ?>">Перейти на сайт<span class="icon-arrow-right"></span></a></div>
                         </div>
                         <br>
                         </br>

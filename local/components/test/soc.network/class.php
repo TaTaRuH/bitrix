@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
 // класс для работы с языковыми файлами
 use Bitrix\Main\Localization\Loc;
@@ -54,21 +54,26 @@ class CIblocList extends CBitrixComponent
         // если нет валидного кеша, получаем данные из БД
         if ($this->startResultCache()) {
             // Запрос к инфоблоку через класс ORM
-            $res = \Bitrix\Iblock\Elements\ElementCatalogTable::getList([
-                'select' => ['ID', 'NAME', 'IBLOCK_ID','PHOTO_'=>'PHOTO'],
-                'filter' => ['ACTIVE' => 'Y'],
-                'order'  => [$this->arParams['IBLOCK_SORT_BY'] => $this->arParams['IBLOCK_SORT_ORDER']]
-            ]);
-            // Формируем массив arResult
-            while ($arItem = $res->fetch()) {
-                $result = NetworkTable::getList([
-                    'select' => ['ID', 'ELEMENT_ID', 'LINK', 'COLOR'],
-                    'filter' => ['=ELEMENT_ID' => $arItem['ID']]
-                ])->fetch();
-                $arItem['COLOR'] = $result['COLOR'];
-                $arItem['LINK']  = $result['LINK'];
-                $arItem['KARTINKA_VALUE'] = CFile::GetFileArray($arItem['PHOTO_VALUE']);
-                $this->arResult[] = $arItem;
+            $query = new Bitrix\Main\Entity\Query(
+                Bitrix\Iblock\Elements\ElementCatalogTable::getEntity()
+            );
+            $query->registerRuntimeField(
+                // поле network как ссылка на таблицу my_network
+                'network',
+                [
+                    // тип — сущность NetworkTable
+                    'data_type' => 'Test\Table\NetworkTable',
+                    // this.ID относится к таблице, относительно которой строится запрос, т.е. ElementCatalogTable.ID = network.ELEMENT_ID
+                    'reference' => ['=this.ID' => 'ref.ELEMENT_ID'],
+                    // тип соединения LEFT
+                    'join_type' => 'LEFT'
+                ]
+            );
+            $query->setSelect(['ID', 'NAME', 'PHOTO_' => 'PHOTO', 'network.ID', 'network.ELEMENT_ID', 'network.COLOR', 'network.LINK']);
+            $result = $query->exec();
+            while ($row = $result->fetch()) {
+                $row['KARTINKA_VALUE'] = CFile::GetFileArray($row['PHOTO_VALUE']);
+                $this->arResult[] = $row;
             }
             // кэш не затронет весь код ниже, он будут выполняться на каждом хите, здесь работаем с другим $arResult, будут доступны только те ключи массива, которые перечислены в вызове SetResultCacheKeys()
             if (isset($this->arResult)) {
