@@ -10,18 +10,17 @@ class NetworkHelper
 
     public static function OnBeforeIBlockElementUpdate($arFields)
     {
-        $array = ['VK' => 'Белый','INST'=>'Черный','TG'=>'Серый'];
+        $array = ['VK' => 'Белый', 'INST' => 'Черный', 'TG' => 'Серый'];
 
         $result = NetworkTable::getList([
-            'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
+            'select' => ['ID', 'ELEMENT_ID', 'LINK', 'COLOR'],
             'filter' => ['=ELEMENT_ID' => $arFields['ID']]
         ])->fetch();
 
         $id = $result['ID'];
 
-        if (isset($id))
-        {
-            $res = NetworkTable::update($id,[
+        if (isset($id)) {
+            $res = NetworkTable::update($id, [
                 'COLOR' => $array[$arFields['NAME']]
             ]);
         }
@@ -31,24 +30,21 @@ class NetworkHelper
     {
         d($arFields);
         $array = [
-            'VK'=>
-                [
+            'VK' => [
                     'ELEMENT_ID' => $arFields['ID'],
                     'LINK' => 'https://vk.com/',
                     'COLOR' => 'Синий'
-                ],
-            'INST'=>
-                [
+            ],
+            'INST' => [
                     'ELEMENT_ID' => $arFields['ID'],
                     'LINK' => 'https://instagram.com/',
                     'COLOR' => 'Желтый'
-                ],
-            'TG'=>
-                [
+            ],
+            'TG'=> [
                     'ELEMENT_ID' => $arFields['ID'],
                     'LINK' => 'https://web.telegram.org/',
                     'COLOR' => 'Голубой'
-                ]
+            ]
         ];
         $result = NetworkTable::add($array[$arFields['NAME']]);
 

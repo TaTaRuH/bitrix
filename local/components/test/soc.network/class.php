@@ -62,7 +62,7 @@ class CIblocList extends CBitrixComponent
             // Формируем массив arResult
             while ($arItem = $res->fetch()) {
                 $result = NetworkTable::getList([
-                    'select' => ['ID','ELEMENT_ID','LINK','COLOR'],
+                    'select' => ['ID', 'ELEMENT_ID', 'LINK', 'COLOR'],
                     'filter' => ['=ELEMENT_ID' => $arItem['ID']]
                 ])->fetch();
                 $arItem['COLOR'] = $result['COLOR'];
@@ -74,7 +74,7 @@ class CIblocList extends CBitrixComponent
             if (isset($this->arResult)) {
                 // ключи $arResult перечисленные при вызове этого метода, будут доступны в component_epilog.php и ниже по коду, обратите внимание там будет другой $arResult
                 $this->SetResultCacheKeys(
-                    array()
+                    []
                 );
                 // подключаем шаблон и сохраняем кеш
                 $this->IncludeComponentTemplate();

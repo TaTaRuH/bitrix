@@ -18,10 +18,10 @@ class NetworkTable extends Entity\DataManager
     public static function getMap()
     {
         return array(
-            new Entity\IntegerField('ID', array(
+            new Entity\IntegerField('ID', [
                 'primary' => true,
                 'autocomplete' => true
-            )),
+            ]),
             new Entity\IntegerField('ELEMENT_ID'),
             new Entity\StringField('LINK'),
             new Entity\StringField('COLOR')
