@@ -125,7 +125,8 @@ class ComposerStaticIniteafc00ef04d8e60c8e1778370fbaae65
         'Kint\\Zval\\TraceValue' => __DIR__ . '/..' . '/kint-php/kint/src/Zval/TraceValue.php',
         'Kint\\Zval\\Value' => __DIR__ . '/..' . '/kint-php/kint/src/Zval/Value.php',
         'Test\\Handler\\NetworkHelper' => __DIR__ . '/../..' . '/src/Handler/NetworkHelper.php',
-        'Test\\Table\\NetworkTable' => __DIR__ . '/../..' . '/src/Table/NetworkTable.php',
+        'Test\\Table\\Network\\DescriptionTable' => __DIR__ . '/../..' . '/src/Table/Network/DescriptionTable.php',
+        'Test\\Table\\Network\\NetworkTable' => __DIR__ . '/../..' . '/src/Table/Network/NetworkTable.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

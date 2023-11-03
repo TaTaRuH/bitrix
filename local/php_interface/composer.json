@@ -5,8 +5,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Test\\Handler\\": "src/Handler",
-            "Test\\Table\\":  "src/Table"
+            "Test\\Handler\\": "src/Handler/",
+            "Test\\Table\\":  "src/Table/"
         }
     },
     "authors": [

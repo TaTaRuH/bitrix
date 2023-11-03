@@ -1,31 +1,29 @@
 <?php
 
-namespace Test\Table;
+namespace Test\Table\Network;
 
 use Bitrix\Main\Entity;
 
-class NetworkTable extends Entity\DataManager
+class DescriptionTable extends Entity\DataManager
 {
     public static function getTableName()
     {
-        return 'my_networks';
+        return 'my_info';
     }
 
     public static function getUfId()
     {
-        return 'MY_NETWORKS';
+        return 'MY_INFO';
     }
     public static function getMap()
     {
-        return array(
+        return [
             new Entity\IntegerField('ID', [
                 'primary' => true,
                 'autocomplete' => true
             ]),
             new Entity\IntegerField('ELEMENT_ID'),
-            new Entity\StringField('LINK'),
-            new Entity\StringField('COLOR')
-        );
+            new Entity\StringField('DESCRIPTION')
+        ];
     }
 }
-?>

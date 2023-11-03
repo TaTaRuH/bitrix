@@ -93,5 +93,6 @@ return array(
     'Kint\\Zval\\TraceValue' => $vendorDir . '/kint-php/kint/src/Zval/TraceValue.php',
     'Kint\\Zval\\Value' => $vendorDir . '/kint-php/kint/src/Zval/Value.php',
     'Test\\Handler\\NetworkHelper' => $baseDir . '/src/Handler/NetworkHelper.php',
-    'Test\\Table\\NetworkTable' => $baseDir . '/src/Table/NetworkTable.php',
+    'Test\\Table\\Network\\DescriptionTable' => $baseDir . '/src/Table/Network/DescriptionTable.php',
+    'Test\\Table\\Network\\NetworkTable' => $baseDir . '/src/Table/Network/NetworkTable.php',
 );

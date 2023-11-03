@@ -7,7 +7,7 @@ use Bitrix\Main\SystemException;
 // класс для загрузки необходимых файлов, классов, модулей
 use Bitrix\Main\Loader;
 
-use Test\Table\NetworkTable;
+use Test\Table\Network\NetworkTable;
 // основной класс, является оболочкой компонента унаследованного от CBitrixComponent
 class CIblocList extends CBitrixComponent
 {
@@ -59,20 +59,18 @@ class CIblocList extends CBitrixComponent
             );
             $query->registerRuntimeField(
                 // поле network как ссылка на таблицу my_network
-                'network',
-                [
+                'network', [
                     // тип — сущность NetworkTable
-                    'data_type' => 'Test\Table\NetworkTable',
+                    'data_type' => \Test\Table\Network\NetworkTable::class,
                     // this.ID относится к таблице, относительно которой строится запрос, т.е. ElementCatalogTable.ID = network.ELEMENT_ID
                     'reference' => ['=this.ID' => 'ref.ELEMENT_ID'],
                     // тип соединения LEFT
                     'join_type' => 'LEFT'
                 ]
             );
-            $query->setSelect(['ID', 'NAME', 'PHOTO_' => 'PHOTO', 'network.ID', 'network.ELEMENT_ID', 'network.COLOR', 'network.LINK']);
+            $query->setSelect(['ID', 'NAME', 'PHOTO', 'network.ID', 'network.ELEMENT_ID', 'network.COLOR', 'network.LINK']);
             $result = $query->exec();
             while ($row = $result->fetch()) {
-                $row['KARTINKA_VALUE'] = CFile::GetFileArray($row['PHOTO_VALUE']);
                 $this->arResult[] = $row;
             }
             // кэш не затронет весь код ниже, он будут выполняться на каждом хите, здесь работаем с другим $arResult, будут доступны только те ключи массива, которые перечислены в вызове SetResultCacheKeys()
