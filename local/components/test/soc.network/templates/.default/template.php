@@ -1,5 +1,6 @@
 <?php
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
+d($arResult);
 ?>
 <section>
     <div class="container product_slider">
@@ -8,7 +9,6 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                 <? foreach ($arResult as $arElement) : ?>
                     <?
                     // получение URL картинки элемента инфоблока
-                    $photo = CFile::GetPath($arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_PHOTO_FILE_ID"]);
                     // ссылки для экшенов и название кнопки
                     $arButtons = CIBlock::GetPanelButtons(
                     // идентификатор инфоблока, которому принадлежит элемент
@@ -57,11 +57,11 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
                     } ?>
                     <div class="product">
                         <div class="item">
-                            <div class="col-1 title"><?= $arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_network_COLOR"] ?></div>
-                            <div class="col-4 image"><img src="<?= $photo ?>" alt="" width="40" height="40"></div>
-                            <div class="col-12 button"><a href="<?= $arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_network_LINK"] ?>">Перейти на сайт<span class="icon-arrow-right"></span></a></div>
+                            <div class="col-1 title"><?= $arElement["NETWORK_COLOR"] ?></div>
+                            <div class="col-4 image"><img src="<?= $arElement["SRC"] ?>" alt="" width="40" height="40"></div>
+                            <div class="col-12 button"><a href="<?= $arElement["NETWORK_LINK"] ?>">Перейти на сайт<span class="icon-arrow-right"></span></a></div>
                         </div>
-                        <div class="col-1 title"><?= $arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_description_DESCRIPTION"] ?></div>
+                        <div class="col-1 title"><?= $arElement["DESC_DESCRIPTION"] ?></div>
                     </div>
                 <br></br>
                 <? endforeach ?>

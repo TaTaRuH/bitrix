@@ -79,11 +79,13 @@ class CIblocList extends CBitrixComponent
                     'join_type' => 'LEFT'
                 ]
             );
-            $query->setSelect(['ID', 'NAME', 'PHOTO.FILE', 'network.ID', 'network.ELEMENT_ID', 'network.COLOR', 'network.LINK', 'description.DESCRIPTION']);
+            $query->setSelect(['ID', 'NAME', 'ICON_' => 'PHOTO.FILE', 'NETWORK_ID' => 'network.ID', 'NETWORK_ELEMENT_ID' => 'network.ELEMENT_ID', 'NETWORK_COLOR' => 'network.COLOR', 'NETWORK_LINK' => 'network.LINK', 'DESC_DESCRIPTION' => 'description.DESCRIPTION']);
+
             $result = $query->exec();
             while ($row = $result->fetch()) {
                 $this->arResult[] = $row;
             }
+
             // кэш не затронет весь код ниже, он будут выполняться на каждом хите, здесь работаем с другим $arResult, будут доступны только те ключи массива, которые перечислены в вызове SetResultCacheKeys()
             if (isset($this->arResult)) {
                 // ключи $arResult перечисленные при вызове этого метода, будут доступны в component_epilog.php и ниже по коду, обратите внимание там будет другой $arResult
