@@ -10,8 +10,7 @@ use Bitrix\Main\Type;
 
 class NetworkHandler
 {
-
-    public static function OnAfterIBlockElementUpdate($arFields)
+    public static function OnBeforeIBlockElementUpdate($arFields)
     {
         $array = ['VK' => 'Белый', 'INST' => 'Черный', 'TG' => 'Серый'];
 

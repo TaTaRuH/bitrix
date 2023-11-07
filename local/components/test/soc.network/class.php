@@ -67,8 +67,19 @@ class CIblocList extends CBitrixComponent
                     // тип соединения LEFT
                     'join_type' => 'LEFT'
                 ]
+            ); 
+            $query->registerRuntimeField(
+            // поле network как ссылка на таблицу my_network
+                'description', [
+                    // тип — сущность NetworkTable
+                    'data_type' => \Test\Table\Network\DescriptionTable::class,
+                    // this.ID относится к таблице, относительно которой строится запрос, т.е. ElementCatalogTable.ID = network.ELEMENT_ID
+                    'reference' => ['=this.ID' => 'ref.ELEMENT_ID'],
+                    // тип соединения LEFT
+                    'join_type' => 'LEFT'
+                ]
             );
-            $query->setSelect(['ID', 'NAME', 'PHOTO', 'network.ID', 'network.ELEMENT_ID', 'network.COLOR', 'network.LINK']);
+            $query->setSelect(['ID', 'NAME', 'PHOTO.FILE', 'network.ID', 'network.ELEMENT_ID', 'network.COLOR', 'network.LINK', 'description.DESCRIPTION']);
             $result = $query->exec();
             while ($row = $result->fetch()) {
                 $this->arResult[] = $row;
