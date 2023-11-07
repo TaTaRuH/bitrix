@@ -1,8 +1,5 @@
 <?php
-//use Test\Table\Network\DescriptionTable;
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) die();
-//print_r(DescriptionTable::getEntity()->compileDbTableStructureDump());
-d($arResult);
 ?>
 <section>
     <div class="container product_slider">
@@ -10,6 +7,7 @@ d($arResult);
             <div class="swiper-wrapper">
                 <? foreach ($arResult as $arElement) : ?>
                     <?
+                    // получение URL картинки элемента инфоблока
                     $photo = CFile::GetPath($arElement["IBLOCK_ELEMENTS_ELEMENT_CATALOG_PHOTO_FILE_ID"]);
                     // ссылки для экшенов и название кнопки
                     $arButtons = CIBlock::GetPanelButtons(
